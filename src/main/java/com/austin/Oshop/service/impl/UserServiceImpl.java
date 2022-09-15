@@ -86,7 +86,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public List<User> getUsers() {
-        return null;
+        return userRepository.findAll();
     }
 
     @Override
@@ -96,7 +96,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public User findUserByEmail(String email) {
-        return null;
+        return userRepository.findUserByEmail(email);
     }
 
     @Override

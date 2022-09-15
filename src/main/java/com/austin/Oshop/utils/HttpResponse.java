@@ -13,13 +13,13 @@ import java.util.*;
  */
 @NoArgsConstructor
 @Data
-public class HttpResponse {
+public class HttpResponse<T> {
 
     private int httpStatusCode;
     private HttpStatus httpStatus;
     private String reason;
     private String message;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy hh:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy hh:mm:ss",timezone = "Africa/Lagos")
     private Date timestamp;
 
     public HttpResponse(int httpStatusCode, HttpStatus httpStatus, String reason, String message) {
