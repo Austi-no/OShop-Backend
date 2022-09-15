@@ -1,0 +1,26 @@
+
+jwt:
+  secret: '3qeWtg$^KT8JH&Vdp2AvP(YFju5!%b)akcDG@R4ZhCxz+BUNwEXrmsS*MIf'
+
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/oshop?createDatabaseIfNotExist=true
+    username: root
+    password: 1234
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect:
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+  mvc:
+    throw-exception-if-no-handler-found: true
+  web:
+    resources:
+      add-mappings: false
