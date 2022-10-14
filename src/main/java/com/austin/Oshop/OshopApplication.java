@@ -14,7 +14,11 @@ public class OshopApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(OshopApplication.class, args);
+
 	}
+
+
+
 
 
 	@Bean
@@ -22,8 +26,8 @@ public class OshopApplication {
 		UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
 		CorsConfiguration corsConfiguration = new CorsConfiguration();
 		corsConfiguration.setAllowCredentials(true);
-        corsConfiguration.setAllowedOrigins(Collections.singletonList("http://localhost:4202"));
-//		corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4201", "http://52.23.235.181/"));
+//        corsConfiguration.setAllowedOrigins(Collections.singletonList("http://localhost:4202"));
+		corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4202", "https://oshopv1.netlify.app"));
 		corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
 				"Accept", "Jwt-Token", "Authorization", "Origin, Accept", "X-Requested-With",
 				"Access-Control-Request-Method", "Access-Control-Request-Headers"));
@@ -34,8 +38,5 @@ public class OshopApplication {
 		return new CorsFilter(urlBasedCorsConfigurationSource);
 	}
 
-	@Bean
-	public BCryptPasswordEncoder bCryptPasswordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+
 }

@@ -1,4 +1,9 @@
 
+springdoc:
+  swagger-ui:
+    path: /swagger/swagger-ui.html
+  api-docs:
+    path: /swagger/api-docs.html
 jwt:
   secret: '3qeWtg$^KT8JH&Vdp2AvP(YFju5!%b)akcDG@R4ZhCxz+BUNwEXrmsS*MIf'
 
@@ -14,15 +19,8 @@ spring:
     properties:
       hibernate:
         dialect:
-  servlet:
-    multipart:
-      max-file-size: 100MB
-      max-request-size: 100MB
 
-  mvc:
-    throw-exception-if-no-handler-found: true
-  web:
-    resources:
-      add-mappings: false
+  main:
+    allow-circular-references: true
 server:
-  port: 8081
+  port: 9001
