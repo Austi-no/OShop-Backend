@@ -1,0 +1,55 @@
+package com.austin.Oshop.service;
+
+
+import com.google.common.cache.*;
+import org.springframework.stereotype.*;
+
+import java.util.concurrent.*;
+
+import static java.util.concurrent.TimeUnit.*;
+
+/**
+ * @author BENARD AUGUSTINE ADAKOLE
+ * @created on 23/Sep/2022 - 11:36 PM
+ * @project Oshop
+ */
+@Service
+public class LoginAttemptService {
+    private static final int MAXIMUM_NUMBER_OF_ATTEMPTS = 5;
+    private static final int ATTEMPT_INCREMENT = 1;
+    private final LoadingCache<String, Integer> loginAttemptCache;
+
+    public LoginAttemptService() {
+        super();
+        loginAttemptCache = CacheBuilder.newBuilder().expireAfterWrite(15, MINUTES)
+                .maximumSize(100).build(new CacheLoader<String, Integer>() {
+                    public Integer load(String key) {
+                        return 0;
+                    }
+                });
+    }
+
+    public void evictUserFromLoginAttemptCache(String username) {
+        loginAttemptCache.invalidate(username);
+    }
+
+    public void addUserToLoginAttemptCache(String username) {
+        int attempts = 0;
+        try {
+            attempts = ATTEMPT_INCREMENT + loginAttemptCache.get(username);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        loginAttemptCache.put(username, attempts);
+    }
+
+    public boolean hasExceededMaxAttempts(String username) {
+        try {
+            return loginAttemptCache.get(username) >= MAXIMUM_NUMBER_OF_ATTEMPTS;
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+}
